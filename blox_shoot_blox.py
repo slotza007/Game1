@@ -77,3 +77,22 @@ class SpaceGame(Widget):
                     self.remove_widget(bullet)
                     self.remove_widget(enemy)
                     self.enemies.remove(enemy)
+    def move_enemies(self):
+        if randint(1, 50) == 1:
+            enemy = Enemy()
+            self.enemies.append(enemy)
+            self.add_widget(enemy)
+
+    def on_key_down(self, keyboard, keycode, text, modifiers):
+        if keycode[1] == 'w':
+            self.spaceship.move('up')
+        elif keycode[1] == 's':
+            self.spaceship.move('down')
+        elif keycode[1] == 'd':
+            self.spaceship.move('right')
+        elif keycode[1] == 'a':
+            self.spaceship.move('left')
+        elif keycode[1] == 'spacebar':
+            bullet = Bullet(self.spaceship)
+            self.bullets.append(bullet)
+            self.add_widget(bullet)
