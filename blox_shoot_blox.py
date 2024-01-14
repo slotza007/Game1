@@ -9,7 +9,7 @@ from kivy.clock import Clock
 class SpaceShip(Widget):
     def __init__(self, **kwargs):
         super(SpaceShip, self).__init__(**kwargs)
-        self.image = Image(source='C://Users//TUF RTX 4060//Desktop//Project//—Pngtree—cartoon airplane model_2652515.png')
+        self.image = Image(source='C://Users//TUF RTX 4060//Desktop//Project1//—Pngtree—cartoon airplane model_2652515.png')
         self.add_widget(self.image)
 
     def move(self, direction):
@@ -25,7 +25,7 @@ class SpaceShip(Widget):
 class Bullet(Image):
     def __init__(self, spaceship, **kwargs):
         super(Bullet, self).__init__(**kwargs)
-        self.source = 'C://Users//TUF RTX 4060//Desktop//Project//bullet.jpg'
+        self.source = 'C://Users//TUF RTX 4060//Desktop//Project1//bullet.jpg'
         self.pos_hint = {'center_x': spaceship.center_x, 'center_y': spaceship.top}
         Clock.schedule_interval(self.update, 1.0 / 60.0)
 
@@ -38,7 +38,7 @@ class Bullet(Image):
 class Enemy(Image):
     def __init__(self, **kwargs):
         super(Enemy, self).__init__(**kwargs)
-        self.source = 'C://Users//TUF RTX 4060//Desktop//Project//moster.png'
+        self.source = 'C://Users//TUF RTX 4060//Desktop//Project1//moster.png'
         self.pos = (randint(0, Window.width - self.width), Window.height)
         Clock.schedule_interval(self.update, 1.0 / 60.0)
 
