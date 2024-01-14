@@ -46,3 +46,34 @@ class Enemy(Image):
         self.y -= 5
         if self.top < 0:
             self.pos = (randint(0, Window.width - self.width), Window.height)
+
+
+class SpaceGame(Widget):
+    def __init__(self, **kwargs):
+        super(SpaceGame, self).__init__(**kwargs)
+        self.spaceship = SpaceShip()
+        self.add_widget(self.spaceship)
+        self.bullets = []
+        self.enemies = []
+
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+
+    def update(self, *args):
+        self.check_collision()
+        self.move_enemies()
+        for bullet in self.bullets:
+            bullet.update()
+
+    def check_collision(self):
+        for enemy in self.enemies:
+            if self.spaceship.collide_widget(enemy):
+                self.remove_widget(self.spaceship)
+                game_over_label = Label(text='Game Over', font_size=70, pos_hint={'center_x': 0.5, 'center_y': 0.5})
+                self.add_widget(game_over_label)
+                return
+
+            for bullet in self.bullets:
+                if bullet.collide_widget(enemy):
+                    self.remove_widget(bullet)
+                    self.remove_widget(enemy)
+                    self.enemies.remove(enemy)
