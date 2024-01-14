@@ -33,3 +33,16 @@ class Bullet(Image):
         self.y += 10
         if self.top > Window.height:
             self.parent.remove_widget(self)
+
+
+class Enemy(Image):
+    def __init__(self, **kwargs):
+        super(Enemy, self).__init__(**kwargs)
+        self.source = 'C://Users//TUF RTX 4060//Desktop//Project//moster.png'
+        self.pos = (randint(0, Window.width - self.width), Window.height)
+        Clock.schedule_interval(self.update, 1.0 / 60.0)
+
+    def update(self, *args):
+        self.y -= 5
+        if self.top < 0:
+            self.pos = (randint(0, Window.width - self.width), Window.height)
