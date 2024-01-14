@@ -96,3 +96,14 @@ class SpaceGame(Widget):
             bullet = Bullet(self.spaceship)
             self.bullets.append(bullet)
             self.add_widget(bullet)
+
+
+class SpaceGameApp(App):
+    def build(self):
+        game = SpaceGame()
+        Window.bind(on_key_down=game.on_key_down)
+        return game
+
+
+if __name__ == '__main__':
+    SpaceGameApp().run()
